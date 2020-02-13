@@ -276,7 +276,8 @@ You can send notifications or take automated action with Lambda when a resource 
   - Provide the EC2 instance access to read SM
 	- Rotate secrets with AWS SM
 	- Encrypt the EBS volume
-  
+- Configure ADFS
+
 ## Next Up
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
@@ -312,7 +313,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [SSE-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)
   - [x] [SSE](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
   - [x] [Memcached vs Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html)
-  - [ ] [ADFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
+  - [x] [ADFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
   - [ ] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
   - [ ] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
   - [ ] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
