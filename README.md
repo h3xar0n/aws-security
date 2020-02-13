@@ -97,9 +97,9 @@
 - By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
 
 ### Amazon EC2
-- If you lose the private key for an EBS-backed instance, you can regain access to your instance. You must: 
-  1. stop the instance, 
-  2. detach its root volume and attach it to another instance as a data volume, 
-  3. modify the `authorized_keys` file, 
-  4. move the volume back to the original instance, and 
-  5. restart the instance.
+If you lose the private key for an EBS-backed instance, you can regain access to your instance. You must: 
+1. stop the instance, 
+2. detach its root volume and attach it to another instance as a data volume, 
+3. modify the `authorized_keys` file, 
+4. move the volume back to the original instance, and 
+5. restart the instance.
