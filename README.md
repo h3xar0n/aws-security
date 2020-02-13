@@ -4,12 +4,12 @@
 - [AWS Config](#aws-config)
 - [Amazon Inspector](#amazon-inspector)
 - [AWS GuardDuty](#aws-guardduty)
+- [AWS VPC](#aws-vpc)
 - [AWS KMS](#aws-kms)
 - [AWS Systems Manager](#aws-systems-manager)
 - [AWS Direct Connect](#aws-direct-connect)
 - [AWS ElastiCache](#aws-elasticache)
 - [AWS IAM](#aws-iam)
-- [AWS VPC](#aws-vpc)
 - [AWS CloudTrail](#aws-cloudtrail)
 - [AWS CloudWatch](#aws-cloudwatch)
 - [AWS EC2](#aws-ec2)
@@ -57,6 +57,23 @@ You can send notifications or take automated action with Lambda when a resource 
   - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
 - It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
 - GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
+
+## AWS VPC
+- VPC Flow Logs enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
+- Flow log data can be published to Amazon CloudWatch Logs and Amazon S3.
+- Flow logs can help you with a number of tasks:
+  - Diagnosing overly restrictive security group rules
+  - Monitoring the traffic that is reaching your instance
+  - Determining the direction of the traffic to and from the network interfaces
+  - Aiding in investigating suspicius traffic
+### DNS servers
+- By default, AWS provides the Amazon DNS server. 
+- To use your own DNS server you can create a new set of DHCP options for your VPC. 
+- The default DHCP option set specifies AmazonProvidedDNS but you can provide the IP address of up to 4 of your own DNS servers. 
+- You cannot update the existing option set, you must delete it and create a new one.
+### Security groups
+- Security groups are stateful, if you have allowed the inbound traffic you do not need to create a rule to allow the outbound reply. 
+- By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
 
 ## AWS KMS
 ### CMK
@@ -122,22 +139,6 @@ You can send notifications or take automated action with Lambda when a resource 
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
-
-## AWS VPC
-- VPC Flow Logs enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
-- Flow logs can help you with a number of tasks:
-  - Diagnosing overly restrictive security group rules
-  - Monitoring the traffic that is reaching your instance
-  - Determining the direction of the traffic to and from the network interfaces
-  - Aiding in investigating suspicius traffic
-### DNS servers
-- By default, AWS provides the Amazon DNS server. 
-- To use your own DNS server you can create a new set of DHCP options for your VPC. 
-- The default DHCP option set specifies AmazonProvidedDNS but you can provide the IP address of up to 4 of your own DNS servers. 
-- You cannot update the existing option set, you must delete it and create a new one.
-### Security groups
-- Security groups are stateful, if you have allowed the inbound traffic you do not need to create a rule to allow the outbound reply. 
-- By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
 
 ## AWS CloudTrail
 - CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
@@ -205,6 +206,10 @@ You can send notifications or take automated action with Lambda when a resource 
     - Does Inspector detect the port?
     - If a Config rule is set, and a notification created, does Config notice the exposure?
     - If a Config Lambda is set and configuration changes, does Config close the port?
+- Try out VPC Flow Logs going to S3 vs CloudWatch Logs
+  - Observe SSH traffic
+  - Observe HTTP traffic
+  - Create an HTTP redirect to HTTPS and observe
 
 ## Next Up
 - [x] ~Restructure notes under services~
@@ -216,7 +221,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
-  - [ ] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
+  - [x] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
   - [ ] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
   - [ ] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
   - [ ] [CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
