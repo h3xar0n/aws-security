@@ -143,6 +143,10 @@ You can send notifications or take automated action with Lambda when a resource 
 ## AWS CloudTrail
 - CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
 - It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
+- CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
+
+![CloudTrail flow](Product-Page-Diagram-AWSX-CloudTrail_How-it-Works.d2f51f6e3ec3ea3b33d0c48d472f0e0b59b46e59.png)
+
 ### Multiple accounts
 - Within an AWS Organization, you can create one CloudTrail to cover all accounts.
 ### Data events
