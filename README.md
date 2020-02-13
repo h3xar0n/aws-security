@@ -2,6 +2,8 @@
 
 - [AWS Trusted Advisor](#aws-trusted-advisor)
 - [AWS Config](#aws-config)
+- [Amazon Inspector](#amazon-inspector)
+- [AWS GuardDuty](#aws-guardduty)
 - [AWS KMS](#aws-kms)
 - [AWS Systems Manager](#aws-systems-manager)
 - [AWS Direct Connect](#aws-direct-connect)
@@ -10,13 +12,11 @@
 - [AWS VPC](#aws-vpc)
 - [AWS CloudTrail](#aws-cloudtrail)
 - [AWS CloudWatch](#aws-cloudwatch)
-- [AWS GuardDuty](#aws-guardduty)
 - [AWS EC2](#aws-ec2)
 - [Attempt Log](#attempt-log)
 - [AWS Marketplace](#aws-marketplace)
 - [Amazon Cloudfront](#amazon-cloudfront)
 - [AWS Lambda](#aws-lambda)
-- [Amazon Inspector](#amazon-inspector)
 - [Test Ideas](#test-ideas)
 - [Next Up](#next-up)
 - [Attempt Log](#attempt-log)
@@ -43,6 +43,20 @@ Config reads CloudTrail logs and does two things:
 You can send notifications or take automated action with Lambda when a resource violates a rule.
 
 ![How Config Works](how-AWSconfig-works.png)
+
+## Amazon Inspector
+- The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
+- Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
+
+## AWS GuardDuty
+- It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
+- It can detect instances exhibiting signs of compromise, such as: 
+  - Attempting to communicate with a command and control server.
+  - Behaving as a spam bot with email traffic over port 25.
+  - Sending requests that look like it is part of a DoS attack
+  - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
+- It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
+- GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
 ## AWS KMS
 ### CMK
@@ -155,16 +169,6 @@ You can send notifications or take automated action with Lambda when a resource 
 - You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
 - You can configure Amazon Inspector as a target for CloudWatch Events. 
 
-## AWS GuardDuty
-- It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
-- It can detect instances exhibiting signs of compromise, such as: 
-  - Attempting to communicate with a command and control server.
-  - Behaving as a spam bot with email traffic over port 25.
-  - Sending requests that look like it is part of a DoS attack
-  - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
-- It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
-- GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
-
 ## AWS EC2
 - If you connect to your instance using SSH and get any of the following errors, "Host key not found in `[directory]`", "Permission denied (publickey)", or "Authentication failed, permission denied", verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key (.pem) file for your instance.
 - If you lose the private key for an EBS-backed instance, you can regain access to your instance. You must: 
@@ -189,25 +193,28 @@ You can send notifications or take automated action with Lambda when a resource 
 ## AWS Lambda
 - For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
 
-## Amazon Inspector
-- The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
-- Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
-
 ## Test Ideas
-- Try out Trusted Advisor vs AWS Config for detecting an open SSH port:
-  - Does Trusted Advisor catch the exposure?
-  - If a Config rule is set, and a notification created, does Config notice the exposure?
-  - If a Config Lambda is set and configuration changes, does Config close the port?
+- Try out Trusted Advisor vs AWS Config vs AWS Inspector for detecting: 
+  - An open SSH port:
+    - Does Trusted Advisor catch the exposure?
+    - Does Inspector detect the port?
+    - If a Config rule is set, and a notification created, does Config notice the exposure?
+    - If a Config Lambda is set and configuration changes, does Config close the port?
+  - An open HTTP (not HTTPS) port:
+    - Does Trusted Advisor catch the exposure?
+    - Does Inspector detect the port?
+    - If a Config rule is set, and a notification created, does Config notice the exposure?
+    - If a Config Lambda is set and configuration changes, does Config close the port?
 
 ## Next Up
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
-- [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor with table or diagram
+- [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor
   - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [x] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
   - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
-  - [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
-  - [ ] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
+  - [x] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
+  - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
   - [ ] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
   - [ ] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
