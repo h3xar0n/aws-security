@@ -208,3 +208,5 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 - [ ] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
 - [ ] [Permissions for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html)
 - [ ] [Encryption CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
+- [ ] [ASFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
+- [ ] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
