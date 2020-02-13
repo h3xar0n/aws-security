@@ -41,10 +41,6 @@
 
 ## Incident Response
 
-### AWS Config
-- AWS Config generates configuration items when the configuration of a resource changes.
-- It maintains historical records of the configuration items of your resources from the time you start the configuration recorder.
-
 ### AWS IAM
 #### Account Compromise
 - If you suspect that your account is compromised, do the following:
@@ -53,6 +49,36 @@
   - Delete any potentially compromised IAM users, and change the password for all other IAM users.
   - Delete any resources on your account you didn't create, such as EC2 instances and AMIs, EBS volumes and snapshots, and IAM users.
   - Respond to any notifications you received from AWS Support through the AWS Support Center.
+
+### AWS VPC
+- VPC Flow Logs enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
+- Flow logs can help you with a number of tasks:
+  - Diagnosing overly restrictive security group rules
+  - Monitoring the traffic that is reaching your instance
+  - Determining the direction of the traffic to and from the network interfaces
+  - Aiding in investigating suspicius traffic
+
+### AWS CloudTrail
+- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
+- It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
+#### Multiple accounts
+- Within an AWS Organization, you can create one CloudTrail to cover all accounts.
+#### Data events
+- Data events provide insight into the resource operations performed on or within a resource, these events are often high-volume activities. 
+- Example data events include S3 object-level API activity and Lambda function execution activity, the Invoke API. 
+- Data events are disabled by default when you create a trail. 
+- To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
+#### Regions
+- When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
+#### Integrity
+- To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
+
+### AWS CloudWatch
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- You can then retrieve the associated log data from CloudWatch Logs. 
+
+### AWS GuardDuty
+- It can detect instances attempting to communicate with a command and control server.
 
 ## Infrastructure Security
 
