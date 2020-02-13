@@ -280,6 +280,14 @@ You can send notifications or take automated action with Lambda when a resource 
 	- Encrypt the EBS volume
 - Configure ADFS
 
+## Attempt Log
+1. 65%
+2. 77%
+3.  
+(>90% needed to take official practice)
+N.
+
+
 ## Next Up
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
@@ -289,7 +297,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
   - [x] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
-- [x] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
+- [x] ~Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram~
   - [x] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
   - [x] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
   - [x] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
@@ -320,6 +328,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
   - [x] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
   - [x] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
+- [ ] Review and remove unneeded notes
 - [ ] Attempt 3 (target: >80%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
@@ -350,12 +359,3 @@ You can send notifications or take automated action with Lambda when a resource 
 - [ ] Official practice
 - [ ] Review and remove unneeded notes
 - [ ] For each question, research correct answer
-
-## Attempt Log
-1. 65%
-2. 77%
-3. 
-4. 
-5.
-
-(>90% needed to take official practice)
