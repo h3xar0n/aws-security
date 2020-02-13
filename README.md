@@ -209,13 +209,12 @@ If you lose the private key for an EBS-backed instance, you can regain access to
   - [ ] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
   - [ ] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
   - [ ] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
-- [ ] Create diagrams or mnemonics and >=3 bullet points for special cases:
+- [ ] Create diagrams or mnemonics or 1-3 bullet points for special cases:
   - [ ] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
   - [ ] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
   - [ ] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
   - [ ] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
   - [ ] [Troubleshooting EC2 Connection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
-- [ ] Create diagrams or mnemonics and >=1 bullet point for other cases:
   - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
   - [ ] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
   - [ ] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
@@ -229,10 +228,27 @@ If you lose the private key for an EBS-backed instance, you can regain access to
   - [ ] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
   - [ ] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
 - [ ] Attempt 3 (target: >80%)
+- [ ] Review and remove unneeded notes
+- [ ] For each wrong or flagged questions:
+   - [ ] Read and take 1-3 bullets
+   - [ ] For wrong questions, also note answers if different from bullets
+- [ ] All Linux Academy Labs
+- [ ] Build a full workload with all controls
+- [ ] Attempt 4 (target: >90%)
+- [ ] Review and remove unneeded notes
+- [ ] For each wrong or flagged questions:
+   - [ ] Read and take 1-3 bullets
+   - [ ] For wrong questions, also note answers if different from bullets
+- [ ] Review video on how to prepare for practice
+- [ ] Official practice
+- [ ] Review and remove unneeded notes
+- [ ] For each question, research correct answer
 
 ## Attempt Log
 1. 65%
 2. 77%
 3. 
+4. 
+5.
 
 (>90% needed to take official practice)
