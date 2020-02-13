@@ -196,7 +196,7 @@ If you lose the private key for an EBS-backed instance, you can regain access to
   - [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [ ] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
   - [ ] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
-- [ ] Distinguish CloudTrail, CloudWatch, and VPC Flow Logs with table or diagram
+- [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
   - [ ] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
   - [ ] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
   - [ ] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
@@ -232,14 +232,28 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 - [ ] For each wrong or flagged questions:
    - [ ] Read and take 1-3 bullets
    - [ ] For wrong questions, also note answers if different from bullets
-- [ ] All Linux Academy Labs
-- [ ] Build a full workload with all controls
+- [ ] Iterative control exercise
+  - [ ] Architectect and diagram a full workload with minimal controls
+  - [ ] Build the workload
+  - [ ] Draft blog 1.1
+  - [ ] Pentest the workload
+  - [ ] Draft blog 1.2
+  - [ ] Architect and diagram an improved workload with native controls
+  - [ ] Build the improved workload
+  - [ ] Draft blog 2.1
+  - [ ] Pentest the improved workload
+  - [ ] Run account hijacking attack
+  - [ ] Draft blog 2.2
+  - [ ] Add CloudFlare, Castle
+  - [ ] Draft blog 3.1
+  - [ ] Run account hijacking attack against CloudFlare, Castle
+  - [ ] Draft blog 3.2
 - [ ] Attempt 4 (target: >90%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
    - [ ] Read and take 1-3 bullets
    - [ ] For wrong questions, also note answers if different from bullets
-- [ ] Review video on how to prepare for practice
+- [ ] Review video on how to prepare for official practice
 - [ ] Official practice
 - [ ] Review and remove unneeded notes
 - [ ] For each question, research correct answer
