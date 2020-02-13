@@ -255,6 +255,8 @@ You can send notifications or take automated action with Lambda when a resource 
     - Does Inspector detect the port?
     - If a Config rule is set, and a notification created, does Config notice the exposure?
     - If a Config Lambda is set and configuration changes, does Config close the port?
+  - Put behind CloudFront, see if errors occur
+  - Turn on TLS for CloudFront
   - Check for errors in CloudWatch
 - Try out VPC Flow Logs going to S3 vs CloudWatch Logs
   - Observe SSH traffic
@@ -314,10 +316,10 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [SSE](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
   - [x] [Memcached vs Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html)
   - [x] [ADFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
-  - [ ] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
-  - [ ] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
-  - [ ] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
-  - [ ] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
+  - [x] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
+  - [x] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
+  - [x] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
+  - [x] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
 - [ ] Attempt 3 (target: >80%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
