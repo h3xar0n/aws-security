@@ -175,6 +175,14 @@ You can send notifications or take automated action with Lambda when a resource 
     - Session policies (e.g. for federated user sessions)
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
+### ADFS
+![adfs.png]
+1. Corporate user accesses the corporate Active Directory Federation Services portal sign-in page and provides Active Directory authentication credentials.
+2. AD FS authenticates the user against Active Directory.
+3. Active Directory returns the user’s information, including AD group membership information.
+4. AD FS dynamically builds ARNs by using Active Directory group memberships for the IAM roles and user attributes for the AWS account IDs, and sends a signed assertion to the users browser with a redirect to post the assertion to AWS STS.
+5. Temporary credentials are returned using STS AssumeRoleWithSAML.
+6. The user is authenticated and provided access to the AWS management console.
 
 ## AWS EC2
 - If you connect to your instance using SSH and get any of the following errors, "Host key not found in `[directory]`", "Permission denied (publickey)", or "Authentication failed, permission denied", verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key (.pem) file for your instance.
@@ -259,13 +267,20 @@ You can send notifications or take automated action with Lambda when a resource 
   - send management events to CloudWatch Events with an alert for IAM changes and changes to encryption
   - Limit permissions for the S3 to one auditor
   - Encrypt the log files in S3--try SSE-S3, then SSE-KMS
+	- Create a KMS grant for another account
+	- Use that account to use the CMK
+	- Revoke the grant
   - Check logs after changes
 - Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
-
+- Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
+  - Provide the EC2 instance access to read SM
+	- Rotate secrets with AWS SM
+	- Encrypt the EBS volume
+  
 ## Next Up
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
-- [x] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor
+- [x] ~Distinguish Inspector, GuardDuty, Config, and Trusted Advisor~
   - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [x] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
   - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
@@ -288,16 +303,16 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
   - [x] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
   - [x] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
-  - [ ] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
-  - [ ] [Troubleshooting EC2 Connection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
-  - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
-  - [ ] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
-  - [ ] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
-  - [ ] [EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
-  - [ ] [SSE-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)
-  - [ ] [SSE](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
-  - [ ] [Memcached vs Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html)
-  - [ ] [ASFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
+  - [x] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
+  - [x] [Troubleshooting EC2 Connection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
+  - [x] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
+  - [x] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
+  - [x] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
+  - [x] [EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+  - [x] [SSE-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)
+  - [x] [SSE](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
+  - [x] [Memcached vs Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html)
+  - [ ] [ADFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
   - [ ] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
   - [ ] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
   - [ ] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
