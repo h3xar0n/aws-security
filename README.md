@@ -199,6 +199,40 @@ You can send notifications or take automated action with Lambda when a resource 
 
 ## AWS Lambda
 - For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
+- For Lambda to make API calls to DynamoDB, the function execution role needs many permissions to interact with DynamoDB.
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Effect": "Allow",
+			"Action": [
+				"dynamodb:BatchGetItem",
+				"dynamodb:GetItem",
+				"dynamodb:Query",
+				"dynamodb:Scan",
+				"dynamodb:BatchWriteItem",
+				"dynamodb:PutItem",
+				"dynamodb:UpdateItem"
+			],
+			"Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/SampleTable"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:eu-west-1:123456789012:*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": "logs:CreateLogGroup",
+			"Resource": "*"
+		}
+	]
+}
+```
+![Lambda architecture](lambda-role.png)
 
 ## Test Ideas
 - Try out Trusted Advisor vs AWS Config vs AWS Inspector vs CloudWatch Agent for detecting: 
@@ -226,7 +260,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - Limit permissions for the S3 to one auditor
   - Encrypt the log files in S3--try SSE-S3, then SSE-KMS
   - Check logs after changes
-
+- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 
 ## Next Up
 - [x] ~Restructure notes under services~
@@ -252,8 +286,8 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
 - [ ] Create diagrams or mnemonics or 1-3 bullet points for special cases:
   - [x] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
-  - [ ] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
-  - [ ] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
+  - [x] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
+  - [x] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
   - [ ] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
   - [ ] [Troubleshooting EC2 Connection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
   - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
