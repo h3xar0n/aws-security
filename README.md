@@ -214,7 +214,7 @@ You can send notifications or take automated action with Lambda when a resource 
 ## Next Up
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
-- [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor
+- [x] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor
   - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [x] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
   - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
