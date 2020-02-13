@@ -2,6 +2,7 @@
 
 - [Data Protection](#data-protection)
 - [Incident Response](#incident-response)
+- [Infrastructure Security](#infrastructure-security)
 
 ## Data Protection
 
@@ -58,3 +59,47 @@
   - Delete any potentially compromised IAM users, and change the password for all other IAM users.
   - Delete any resources on your account you didn't create, such as EC2 instances and AMIs, EBS volumes and snapshots, and IAM users.
   - Respond to any notifications you received from AWS Support through the AWS Support Center.
+
+## Infrastructure Security
+
+### AWS Systems Manager 
+#### Patch Manager
+- The default predefined patch baseline for Windows servers in Patch Manager is `AWS-DefaultPatchBaseline`.
+
+### AWS Marketplace
+#### IDS/IPS
+- AWS GuardDuty is not an IDS. While it does perform _threat_ detection based on logs, it does not detect _intrusion_. 
+- AWS Shield is not an IPS. It mitigates DDoS attacks, but it does not prevent intrusion.
+- AWS acknowledge that they do not provide IPS/IDS. 
+  - Instead they suggest that third-party software can be used to provide additional functionality such as deep packet inspection, IPS/IDS, or network threat protection. 
+  - Search for IPS on AWS Marketplace and you will find a range of suitable products!
+
+### Amazon Cloudfront
+#### Encryption in transit
+- End-to-end encryption _between_ a user and S3 entails using TLS; it does not entail server-side encryption (SSE) for S3, which is encryption at rest.
+
+### AWS Trusted Advisor
+- Checks security groups for rules that allow unrestricted access (0.0.0.0/0) to specific ports such as SSH. 
+  - Unrestricted access increases opportunities for malicious activity (hacking, denial-of-service attacks, loss of data). 
+  - The ports with highest risk are flagged red, and those with less risk are flagged yellow. 
+  - Ports flagged green are typically used by applications that require unrestricted access, such as HTTP and SMTP.
+- AWS Config can alert you to any modifications to a security group but will not perform a check for unrestricted access.
+- Running a manual check or a full penetration test is not an efficient way to get this information.
+
+### Amazon Virtual Private Cloud
+#### DNS servers
+- By default, AWS provides the Amazon DNS server. 
+- To use your own DNS server you can create a new set of DHCP options for your VPC. 
+- The default DHCP option set specifies AmazonProvidedDNS but you can provide the IP address of up to 4 of your own DNS servers. 
+- You cannot update the existing option set, you must delete it and create a new one.
+#### Security groups
+- Security groups are stateful, if you have allowed the inbound traffic you do not need to create a rule to allow the outbound reply. 
+- By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
+
+### Amazon EC2
+- If you lose the private key for an EBS-backed instance, you can regain access to your instance. You must: 
+  1. stop the instance, 
+  2. detach its root volume and attach it to another instance as a data volume, 
+  3. modify the `authorized_keys` file, 
+  4. move the volume back to the original instance, and 
+  5. restart the instance.
