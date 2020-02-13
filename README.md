@@ -5,6 +5,7 @@
 - [Infrastructure Security](#infrastructure-security)
 - [Identity and Access Management](#identity-and-access-management)
 - [Logging and Monitoring](#logging-and-monitoring)
+- [Reading List](#reading-list)
 
 ## Data Protection
 
@@ -176,3 +177,6 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 - Management and Data events are handled by separate CloudTrails. 
   - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
   - Give each class of user only the access they need.
+  
+## Reading List
+- [ ] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
