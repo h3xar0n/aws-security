@@ -134,12 +134,15 @@ You can send notifications or take automated action with Lambda when a resource 
   - AWS CodeBuild
   - AWS CodeDeploy
 - Configure integration with the following AWS services for encryption, notification, monitoring, and auditing:
-  - AWS KMS
   - Amazon SNS
   - Amazon CloudWatch
   - AWS CloudTrail
-- Parameter Store uses KMS customer master keys to encrypt the parameter values when you create or change them.
-  - An instance role needs permission both to read an SSM parameter and to use KMS to decrypt it.
+  - AWS KMS
+    - An instance role needs permission both to read an SSM parameter and to use KMS to decrypt it.
+    - Parameter Store uses KMS customer master keys to encrypt the parameter values when you create or change them.
+    - Parameter Store supports only symmetric CMKs. You cannot use asymmetric CMKs to encrypt your parameters.
+![Standard Parameter Encryption](service-pstore-standard.png)
+
 ### Patch Manager
 - The default predefined patch baseline for Windows servers in Patch Manager is `AWS-DefaultPatchBaseline`.
 
