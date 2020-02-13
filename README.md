@@ -194,7 +194,10 @@ You can send notifications or take automated action with Lambda when a resource 
 - Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
 
 ## Test Ideas
-- Try out Trusted Advisor vs AWS Config for detecting an open SSH port
+- Try out Trusted Advisor vs AWS Config for detecting an open SSH port:
+  - Does Trusted Advisor catch the exposure?
+  - If a Config rule is set, and a notification created, does Config notice the exposure?
+  - If a Config Lambda is set and configuration changes, does Config close the port?
 
 ## Next Up
 - [x] ~Restructure notes under services~
@@ -202,7 +205,7 @@ You can send notifications or take automated action with Lambda when a resource 
 - [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor with table or diagram
   - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [x] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
-  - [ ] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
+  - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
   - [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [ ] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
