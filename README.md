@@ -191,6 +191,8 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 - [ ] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
 - [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
 - [ ] [CloudTrail for Orgs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html)
+- [ ] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
+- [ ] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 
 ### Backlog
 - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
