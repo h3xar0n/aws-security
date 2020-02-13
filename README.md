@@ -38,6 +38,8 @@
 - With AWS Direct Connect plus VPN, you can combine one or more AWS Direct Connect dedicated network connections with the Amazon VPC VPN. 
 - This combination provides an IPsec-encrypted private connection that also reduces network costs, increases bandwidth throughput, and provides a more consistent network experience than internet-based VPN connections.
 
+### AWS ElastiCache
+- Supports encryption only for Redis 3.2.6, 4.0.10 and later, not Memcached.
 
 ## Incident Response
 
@@ -146,6 +148,11 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
+
+### AWS KMS
+#### Parameter Store
+- Parameter Store uses KMS customer master keys to encrypt the parameter values when you create or change them.
+- An instance role needs permission both to read an SSM parameter and to use KMS to decrypt it.
 
 ## Logging and Monitoring
 
