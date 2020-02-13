@@ -179,7 +179,20 @@ If you lose the private key for an EBS-backed instance, you can regain access to
   - Give each class of user only the access they need.
   
 ## Reading List
-- [ ] [**AWS Direct Connect Plus VPN**](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
+### Priority
+- [ ] [AWS Direct Connect Plus VPN**](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
+- [ ] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
+- [ ] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
+- [ ] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
+- [ ] [CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
+- [ ] [CloudTrail Integrity](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)
+- [ ] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
+- [ ] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
+- [ ] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
+- [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
+- [ ] [CloudTrail for Orgs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html)
+
+### Backlog
 - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
 - [ ] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
 - [ ] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
