@@ -126,3 +126,4 @@ If you lose the private key for an EBS-backed instance, you can regain access to
     - Session policies (e.g. for federated user sessions)
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 
+![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
