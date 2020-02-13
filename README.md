@@ -22,25 +22,19 @@
 
 ## AWS Trusted Advisor
 - Checks Security Groups for rules that allow unrestricted access (0.0.0.0/0) to specific ports such as SSH. 
-  - Unrestricted access increases opportunities for malicious activity (hacking, denial-of-service attacks, loss of data). 
-    - [AWS Config](#aws-config) can alert you to any _modifications_ to a Security Group but out of the box, it will not perform a check for _unrestricted access_.
-  - The ports with highest risk are flagged red, and those with less risk are flagged yellow. 
+  - [AWS Config](#aws-config) can alert you to any _modifications_ to a Security Group but out of the box, it will not perform a check for _unrestricted access_.
   - Ports flagged green are typically used by applications that require unrestricted access, such as HTTP and SMTP.
-- Running a manual check or a full penetration test is not an efficient way to get this information.
 - Other core best practice checks:
   - S3 Bucket Permissions
   - IAM Use
   - MFA on Root Account
   - EBS Public Snapshots
   - RDS Public Snapshots
-- For customizable tracking, use [AWS Config](#aws-config)
 
 ## AWS Config
-Config reads CloudTrail logs and does two things: 
-1. It creates a timeline of changes made to tracked resources (so you can see how a resource like an S3 bucket has been modified over time), and
-2. It allows you to create rules to detect whether your environment is in compliance with certain policies (e.g. all your EBS volumes are encrypted). 
-You can send notifications or take automated action with Lambda when a resource violates a rule.
-
+- Config creates a timeline of changes made to tracked resources (so you can see how a resource like an S3 bucket has been modified over time)
+- It allows you to create rules to detect whether your environment is in compliance with certain policies (e.g. all your EBS volumes are encrypted). 
+- You can send notifications or take automated action with Lambda when a resource violates a rule.
 ![How Config Works](how-AWSconfig-works.png)
 
 ## Amazon Inspector
