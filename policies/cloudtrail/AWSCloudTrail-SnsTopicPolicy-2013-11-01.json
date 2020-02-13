@@ -1,0 +1,14 @@
+{
+    "Statement": [
+        {
+            "Action": "SNS:Publish",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+            },
+            "Resource": "arn:aws:sns:<Region>:<SNSTopicOwnerAccountId>:<SNSTopicName>",
+            "Sid": "AWSCloudTrailSNSPolicy20131101"
+        }
+    ],
+    "Version": "2012-10-17"
+}
