@@ -263,8 +263,8 @@
 	- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 - Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
   - Provide the EC2 instance access to read SM
-	- Rotate secrets with AWS SM
-	- Encrypt the EBS volume
+- Rotate secrets with AWS SM
+- Encrypt the EBS volume
 - Configure ADFS
 - Simulate lost private key for EC2
 - Simulate compromised root account
