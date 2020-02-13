@@ -173,8 +173,8 @@
 - Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
 
 ## Next Up
-- [x] Restructure notes under services
-- [ ] Create diagram for policy evaluation
+- [x] ~Restructure notes under services~
+- [x] ~Create diagram for policy evaluation~
 - [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor with table or diagram
   - [ ] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [ ] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
