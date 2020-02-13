@@ -244,10 +244,17 @@
   - Put behind CloudFront, see if errors occur
   - Turn on TLS for CloudFront
   - Check for errors in CloudWatch
+- Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
+  - Provide the EC2 instance access to read SM
+	- Rotate secrets with AWS SM
+	- Encrypt the EBS volume
+	- Simulate lost private key for EC2
 - Try out VPC Flow Logs going to S3 vs CloudWatch Logs
   - Observe SSH traffic
   - Observe HTTP traffic
   - Create an HTTP redirect to HTTPS and observe
+- Set up GuardDuty to trigger CloudWatch Events and Lambda
+- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 - Create multiple accounts under AWS Organization
   - Create top-level CloudTrails for data and management events, send each to separate S3s
   - Query S3s with Athena
@@ -259,15 +266,6 @@
 	- Use that account to use the CMK
 	- Revoke the grant
   - Check logs after changes
-- Set up GuardDuty to trigger CloudWatch Events and Lambda
-	- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
-- Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
-  - Provide the EC2 instance access to read SM
-- Rotate secrets with AWS SM
-- Encrypt the EBS volume
-- Configure ADFS
-- Simulate lost private key for EC2
-- Simulate compromised root account
 
 ## Attempt Log
 1. 65%
@@ -319,21 +317,6 @@
 - [x] Review and remove unneeded notes
 - [x] Attempt 3 (target: >80%)
 - [ ] Iterative control exercise
-  - [ ] Architectect and diagram a full workload with minimal controls
-  - [ ] Build the workload
-  - [ ] Draft blog 1.1
-  - [ ] Pentest the workload
-  - [ ] Draft blog 1.2
-  - [ ] Architect and diagram an improved workload with native controls
-  - [ ] Build the improved workload
-  - [ ] Draft blog 2.1
-  - [ ] Pentest the improved workload
-  - [ ] Run account hijacking attack
-  - [ ] Draft blog 2.2
-  - [ ] Add CloudFlare, Castle
-  - [ ] Draft blog 3.1
-  - [ ] Run account hijacking attack against CloudFlare, Castle
-  - [ ] Draft blog 3.2
 - [ ] Attempt 4 (target: >90%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
