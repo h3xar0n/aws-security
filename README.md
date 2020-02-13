@@ -3,6 +3,7 @@
 - [Data Protection](#data-protection)
 - [Incident Response](#incident-response)
 - [Infrastructure Security](#infrastructure-security)
+- [Identity and Access Management](#identity-and-access-management)
 
 ## Data Protection
 
@@ -103,3 +104,25 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 3. modify the `authorized_keys` file, 
 4. move the volume back to the original instance, and 
 5. restart the instance.
+
+## Identity and Access Management
+
+### AWS IAM
+#### Policy evaluation logic
+1. The AWS service receives the request
+2. AWS first authenticates the principal.
+    - Except for services such as S3 that allow anonymous access). 
+3. Next, AWS determines which policy to apply to the request. 
+    - Actions (or operations) – The actions or operations that the principal wants to perform.
+    - Resources – The AWS resource object upon which the actions or operations are performed.
+    - Principal – The user, role, federated user, or application that sent the request. Information about the principal includes the policies that are associated with that principal.
+    - Environment data – Information about the IP address, user agent, SSL enabled status, or the time of day.
+    - Resource data – Data related to the resource that is being requested. This can include information such as a DynamoDB table name or a tag on an Amazon EC2 instance.
+4. Then, AWS evaluates the policy types and arranges an order of evaluation. 
+    - Identity-based policies
+    - Resource-based policies
+    - IAM permissions boundaries
+    - AWS Organizations service control policies (SCPs)
+    - Session policies (e.g. for federated user sessions)
+5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
+
