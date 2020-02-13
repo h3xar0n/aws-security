@@ -5,13 +5,13 @@
 - [Amazon Inspector](#amazon-inspector)
 - [AWS GuardDuty](#aws-guardduty)
 - [AWS VPC](#aws-vpc)
+- [AWS CloudTrail](#aws-cloudtrail)
+- [AWS CloudWatch](#aws-cloudwatch)
 - [AWS KMS](#aws-kms)
 - [AWS Systems Manager](#aws-systems-manager)
 - [AWS Direct Connect](#aws-direct-connect)
 - [AWS ElastiCache](#aws-elasticache)
 - [AWS IAM](#aws-iam)
-- [AWS CloudTrail](#aws-cloudtrail)
-- [AWS CloudWatch](#aws-cloudwatch)
 - [AWS EC2](#aws-ec2)
 - [Attempt Log](#attempt-log)
 - [AWS Marketplace](#aws-marketplace)
@@ -83,8 +83,10 @@ You can send notifications or take automated action with Lambda when a resource 
 ### Multiple accounts
 - Within an AWS Organization, you can create one CloudTrail to cover all accounts.
 ![CloudTrail for Orgs](organization-trail.png)
-### Data events
+### Management and data events
 - Management and Data events are handled by separate CloudTrails. 
+  - **Data Events**: operations on or within a resource
+  - **Management Events**: Configuration or security changes
   - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
   - Give each class of user only the access they need.
 - Data events provide insight into the resource operations performed on or within a resource, these events are often high-volume activities. 
@@ -197,7 +199,8 @@ You can send notifications or take automated action with Lambda when a resource 
 - For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
 
 ## Test Ideas
-- Try out Trusted Advisor vs AWS Config vs AWS Inspector for detecting: 
+- Try out Trusted Advisor vs AWS Config vs AWS Inspector vs CloudWatch Agent for detecting: 
+  - Install a CloudWatch agent on EC2 and use Parameter Store [like so](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
   - An open SSH port:
     - Does Trusted Advisor catch the exposure?
     - Does Inspector detect the port?
@@ -208,15 +211,20 @@ You can send notifications or take automated action with Lambda when a resource 
     - Does Inspector detect the port?
     - If a Config rule is set, and a notification created, does Config notice the exposure?
     - If a Config Lambda is set and configuration changes, does Config close the port?
+  - Check for errors in CloudWatch
 - Try out VPC Flow Logs going to S3 vs CloudWatch Logs
   - Observe SSH traffic
   - Observe HTTP traffic
   - Create an HTTP redirect to HTTPS and observe
 - Create multiple accounts under AWS Organization
-  - Create a top-level CloudTrail, send to S3
-  - Query that S3 with Athena
+  - Create top-level CloudTrails for data and management events, send each to separate S3s
+  - Query S3s with Athena
+  - send data events to CloudWatch Logs
+  - send management events to CloudWatch Events with an alert for IAM changes and changes to encryption
   - Limit permissions for the S3 to one auditor
   - Encrypt the log files in S3--try SSE-S3, then SSE-KMS
+  - Check logs after changes
+
 
 ## Next Up
 - [x] ~Restructure notes under services~
@@ -227,7 +235,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
   - [x] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
-- [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
+- [x] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
   - [x] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
   - [x] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
   - [x] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
@@ -237,9 +245,9 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [Athena x CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html)
   - [x] [Permissions for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html)
   - [x] [Encryption CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
-  - [ ] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
-  - [ ] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
-  - [ ] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
+  - [x] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
+  - [x] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
+  - [x] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
 - [ ] Create diagrams or mnemonics or 1-3 bullet points for special cases:
   - [ ] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
   - [ ] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
