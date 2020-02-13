@@ -1,4 +1,4 @@
-# AWS Security Grindfest
+# AWS Security Funtime
 
 - [AWS Trusted Advisor](#aws-trusted-advisor)
 - [AWS Config](#aws-config)
