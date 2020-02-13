@@ -9,7 +9,6 @@
 - [AWS CloudWatch](#aws-cloudwatch)
 - [AWS KMS](#aws-kms)
 - [AWS Systems Manager](#aws-systems-manager)
-- [AWS Direct Connect](#aws-direct-connect)
 - [AWS ElastiCache](#aws-elasticache)
 - [AWS IAM](#aws-iam)
 - [AWS EC2](#aws-ec2)
@@ -74,6 +73,10 @@ You can send notifications or take automated action with Lambda when a resource 
 ### Security groups
 - Security groups are stateful, if you have allowed the inbound traffic you do not need to create a rule to allow the outbound reply. 
 - By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
+### AWS Direct Connect
+- With AWS Direct Connect plus VPN, you can combine one or more AWS Direct Connect dedicated network connections with the Amazon VPC VPN. 
+- This combination provides an IPsec-encrypted private connection that also reduces network costs, increases bandwidth throughput, and provides a more consistent network experience than internet-based VPN connections.
+![AWS Direct Connect and VPN](aws-direct-connect-vpn.png)
 
 ## AWS CloudTrail
 - CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
@@ -139,10 +142,6 @@ You can send notifications or take automated action with Lambda when a resource 
   - An instance role needs permission both to read an SSM parameter and to use KMS to decrypt it.
 ### Patch Manager
 - The default predefined patch baseline for Windows servers in Patch Manager is `AWS-DefaultPatchBaseline`.
-
-## AWS Direct Connect
-- With AWS Direct Connect plus VPN, you can combine one or more AWS Direct Connect dedicated network connections with the Amazon VPC VPN. 
-- This combination provides an IPsec-encrypted private connection that also reduces network costs, increases bandwidth throughput, and provides a more consistent network experience than internet-based VPN connections.
 
 ## AWS ElastiCache
 - Supports encryption only for Redis 3.2.6, 4.0.10 and later, not Memcached.
@@ -249,7 +248,7 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
   - [x] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
 - [ ] Create diagrams or mnemonics or 1-3 bullet points for special cases:
-  - [ ] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
+  - [x] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
   - [ ] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
   - [ ] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
   - [ ] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
