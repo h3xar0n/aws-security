@@ -171,7 +171,7 @@
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
 ### ADFS
-![adfs.png]
+![ADFS flow](adfs.png)
 1. Corporate user accesses the corporate Active Directory Federation Services portal sign-in page and provides Active Directory authentication credentials.
 2. AD FS authenticates the user against Active Directory.
 3. Active Directory returns the user’s information, including AD group membership information.
