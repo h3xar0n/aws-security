@@ -132,7 +132,11 @@
 
 ## AWS GuardDuty
 - It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
-- It can detect instances attempting to communicate with a command and control server.
+- It can detect instances exhibiting signs of compromise, such as: 
+  - Attempting to communicate with a command and control server.
+  - Behaving as a spam bot with email traffic over port 25.
+  - Sending requests that look like it is part of a DoS attack
+  - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
 - It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
 - GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
@@ -176,7 +180,7 @@
 - [x] ~Restructure notes under services~
 - [x] ~Create diagram for policy evaluation~
 - [ ] Distinguish Inspector, GuardDuty, Config, and Trusted Advisor with table or diagram
-  - [ ] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
+  - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
   - [ ] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
   - [ ] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
   - [ ] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
