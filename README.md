@@ -1,5 +1,8 @@
 # AWS Security Grindfest
 
+- [Data Protection](#data-protection)
+- [Incident Response](#incident-response)
+
 ## Data Protection
 
 ### AWS KMS
@@ -41,3 +44,17 @@
   - AWS CloudTrail
 - If a service does not directly support it (e.g., RDS), just **use Lambda in association with the service**
 
+## Incident Response
+
+### AWS Config
+- AWS Config generates configuration items when the configuration of a resource changes.
+- It maintains historical records of the configuration items of your resources from the time you start the configuration recorder.
+
+### AWS IAM
+#### Account Compromise
+- If you suspect that your account is compromised, do the following:
+  - Change your AWS account root user password.
+  - Rotate and delete all root and AWS Identity and Access Management (IAM) access keys.
+  - Delete any potentially compromised IAM users, and change the password for all other IAM users.
+  - Delete any resources on your account you didn't create, such as EC2 instances and AMIs, EBS volumes and snapshots, and IAM users.
+  - Respond to any notifications you received from AWS Support through the AWS Support Center.
