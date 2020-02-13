@@ -3,10 +3,10 @@
 - [AWS Trusted Advisor](#aws-trusted-advisor)
 - [AWS Config](#aws-config)
 - [Amazon Inspector](#amazon-inspector)
-- [AWS GuardDuty](#aws-guardduty)
 - [AWS VPC](#aws-vpc)
 - [AWS CloudTrail](#aws-cloudtrail)
 - [AWS CloudWatch](#aws-cloudwatch)
+- [AWS GuardDuty](#aws-guardduty)
 - [AWS KMS](#aws-kms)
 - [AWS Systems Manager](#aws-systems-manager)
 - [AWS ElastiCache](#aws-elasticache)
@@ -40,16 +40,6 @@
 ## Amazon Inspector
 - The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
 - Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
-
-## AWS GuardDuty
-- It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
-- It can detect instances exhibiting signs of compromise, such as: 
-  - Attempting to communicate with a command and control server.
-  - Behaving as a spam bot with email traffic over port 25.
-  - Sending requests that look like it is part of a DoS attack
-  - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
-- It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
-- GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
 ## AWS VPC
 - VPC Flow Logs enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
@@ -106,6 +96,16 @@
 ### CloudWatch Events
 - You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
 - You can configure Amazon Inspector as a target for CloudWatch Events. 
+
+## AWS GuardDuty
+- It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
+- It can detect instances exhibiting signs of compromise, such as: 
+  - Attempting to communicate with a command and control server.
+  - Behaving as a spam bot with email traffic over port 25.
+  - Sending requests that look like it is part of a DoS attack
+  - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
+- It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
+- GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
 ## AWS KMS
 ### CMK
