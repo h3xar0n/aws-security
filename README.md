@@ -14,7 +14,6 @@
 - [AWS EC2](#aws-ec2)
 - [Attempt Log](#attempt-log)
 - [AWS Marketplace](#aws-marketplace)
-- [Amazon Cloudfront](#amazon-cloudfront)
 - [AWS Lambda](#aws-lambda)
 - [Test Ideas](#test-ideas)
 - [Next Up](#next-up)
@@ -51,8 +50,6 @@
   - Determining the direction of the traffic to and from the network interfaces
   - Aiding in investigating suspicius traffic
 ### DNS servers
-- By default, AWS provides the Amazon DNS server. 
-- To use your own DNS server you can create a new set of DHCP options for your VPC. 
 - The default DHCP option set specifies AmazonProvidedDNS but you can provide the IP address of up to 4 of your own DNS servers. 
 - You cannot update the existing option set, you must delete it and create a new one.
 ### Security groups
@@ -74,13 +71,11 @@
 ### Management and data events
 - Management and Data events are handled by separate CloudTrails. 
   - **Data Events**: operations on or within a resource
+		- Often high-volume
+		- Disabled by default
+		- You must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
   - **Management Events**: Configuration or security changes
   - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
-  - Give each class of user only the access they need.
-- Data events provide insight into the resource operations performed on or within a resource, these events are often high-volume activities. 
-- Example data events include S3 object-level API activity and Lambda function execution activity, the Invoke API. 
-- Data events are disabled by default when you create a trail. 
-- To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
 ### Regions
 - When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
 ### Integrity
@@ -88,8 +83,8 @@
 
 ## AWS CloudWatch
 - You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
-- You can then retrieve the associated log data from CloudWatch Logs. 
 - CloudWatch alone lacks the business rules that are provided with GuardDuty to create an event whenever malicious or unauthorized behavior is observed.
+	- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 - If an anomaly is detect, CloudWatch Event can trigger a Lambda.
 ### CloudWatch Logs
 - You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
@@ -106,7 +101,7 @@
   - Sending requests that look like it is part of a DoS attack
   - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
 - It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
-- GuardDuty can trigger CloudWatch events which can then be used for a variety of activities like notifications or automatically responding to a threat.
+- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
 ## AWS KMS
 ### CMK
@@ -196,10 +191,6 @@
   - Instead they suggest that third-party software can be used to provide additional functionality such as deep packet inspection, IPS/IDS, or network threat protection. 
   - Search for IPS on AWS Marketplace and you will find a range of suitable products!
 
-## Amazon Cloudfront
-### Encryption in transit
-- End-to-end encryption _between_ a user and S3 entails using TLS; it does not entail server-side encryption (SSE) for S3, which is encryption at rest.
-
 ## AWS Lambda
 - For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
 - For Lambda to make API calls to DynamoDB, the function execution role needs many permissions to interact with DynamoDB.
@@ -268,20 +259,21 @@
 	- Use that account to use the CMK
 	- Revoke the grant
   - Check logs after changes
-- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
+- Set up GuardDuty to trigger CloudWatch Events and Lambda
+	- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 - Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
   - Provide the EC2 instance access to read SM
 	- Rotate secrets with AWS SM
 	- Encrypt the EBS volume
 - Configure ADFS
+- Simulate lost private key for EC2
+- Simulate compromised root account
 
 ## Attempt Log
 1. 65%
 2. 77%
 3.  
 (>90% needed to take official practice)
-N.
-
 
 ## Next Up
 - [x] ~Restructure notes under services~
