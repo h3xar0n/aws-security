@@ -179,7 +179,7 @@ If you lose the private key for an EBS-backed instance, you can regain access to
   - Give each class of user only the access they need.
   
 ## Reading List
-- [ ] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
+- [ ] [**AWS Direct Connect Plus VPN**](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
 - [ ] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
 - [ ] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
 - [ ] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
