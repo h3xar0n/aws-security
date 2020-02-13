@@ -4,6 +4,7 @@
 - [Incident Response](#incident-response)
 - [Infrastructure Security](#infrastructure-security)
 - [Identity and Access Management](#identity-and-access-management)
+- [Logging and Monitoring](#logging-and-monitoring)
 
 ## Data Protection
 
@@ -127,3 +128,26 @@ If you lose the private key for an EBS-backed instance, you can regain access to
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
 
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
+
+## Logging and Monitoring
+
+### AWS Lambda
+- For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
+
+### CloudWatch
+#### CloudWatch Logs
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- You can then retrieve the associated log data from CloudWatch Logs.
+#### CloudWatch Events
+- You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
+- You can configure Amazon Inspector as a target for CloudWatch Events. 
+
+### Amazon Inspector
+- The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
+- Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
+
+### AWS CloudTrail
+- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
+- Management and Data events are handled by separate CloudTrails. 
+  - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
+  - Give each class of user only the access they need.
