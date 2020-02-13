@@ -272,7 +272,8 @@
 ## Attempt Log
 1. 65%
 2. 77%
-3.  
+3. 89%
+4.
 (>90% needed to take official practice)
 
 ## Next Up
@@ -315,8 +316,8 @@
   - [x] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
   - [x] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
   - [x] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
-- [ ] Review and remove unneeded notes
-- [ ] Attempt 3 (target: >80%)
+- [x] Review and remove unneeded notes
+- [x] Attempt 3 (target: >80%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
    - [ ] Read and take 1-3 bullets
