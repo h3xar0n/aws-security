@@ -75,6 +75,39 @@ You can send notifications or take automated action with Lambda when a resource 
 - Security groups are stateful, if you have allowed the inbound traffic you do not need to create a rule to allow the outbound reply. 
 - By default an SG allows any outbound traffic so you don't need to add an outbound rule to a server in a public subnet.
 
+## AWS CloudTrail
+- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
+- It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
+- CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
+![CloudTrail flow](Product-Page-Diagram-AWSX-CloudTrail_How-it-Works.d2f51f6e3ec3ea3b33d0c48d472f0e0b59b46e59.png)
+### Multiple accounts
+- Within an AWS Organization, you can create one CloudTrail to cover all accounts.
+![CloudTrail for Orgs](organization-trail.png)
+### Data events
+- Management and Data events are handled by separate CloudTrails. 
+  - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
+  - Give each class of user only the access they need.
+- Data events provide insight into the resource operations performed on or within a resource, these events are often high-volume activities. 
+- Example data events include S3 object-level API activity and Lambda function execution activity, the Invoke API. 
+- Data events are disabled by default when you create a trail. 
+- To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
+### Regions
+- When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
+### Integrity
+- To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
+
+## AWS CloudWatch
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- You can then retrieve the associated log data from CloudWatch Logs. 
+- CloudWatch alone lacks the business rules that are provided with GuardDuty to create an event whenever malicious or unauthorized behavior is observed.
+- If an anomaly is detect, CloudWatch Event can trigger a Lambda.
+### CloudWatch Logs
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- You can then retrieve the associated log data from CloudWatch Logs.
+### CloudWatch Events
+- You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
+- You can configure Amazon Inspector as a target for CloudWatch Events. 
+
 ## AWS KMS
 ### CMK
 - Imported key material
@@ -137,41 +170,7 @@ You can send notifications or take automated action with Lambda when a resource 
     - AWS Organizations service control policies (SCPs)
     - Session policies (e.g. for federated user sessions)
 5. Finally, AWS then processes the policies against the request context to determine if it is allowed.
-
 ![Policy Evaluation Diagram](PolicyEvaluationHorizontal.png)
-
-## AWS CloudTrail
-- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
-- It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
-- CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
-![CloudTrail flow](Product-Page-Diagram-AWSX-CloudTrail_How-it-Works.d2f51f6e3ec3ea3b33d0c48d472f0e0b59b46e59.png)
-### Multiple accounts
-- Within an AWS Organization, you can create one CloudTrail to cover all accounts.
-![CloudTrail for Orgs](organization-trail.png)
-### Data events
-- Management and Data events are handled by separate CloudTrails. 
-  - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
-  - Give each class of user only the access they need.
-- Data events provide insight into the resource operations performed on or within a resource, these events are often high-volume activities. 
-- Example data events include S3 object-level API activity and Lambda function execution activity, the Invoke API. 
-- Data events are disabled by default when you create a trail. 
-- To record CloudTrail data events, you must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
-### Regions
-- When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
-### Integrity
-- To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
-
-## AWS CloudWatch
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
-- You can then retrieve the associated log data from CloudWatch Logs. 
-- CloudWatch alone lacks the business rules that are provided with GuardDuty to create an event whenever malicious or unauthorized behavior is observed.
-- If an anomaly is detect, CloudWatch Event can trigger a Lambda.
-### CloudWatch Logs
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
-- You can then retrieve the associated log data from CloudWatch Logs.
-### CloudWatch Events
-- You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
-- You can configure Amazon Inspector as a target for CloudWatch Events. 
 
 ## AWS EC2
 - If you connect to your instance using SSH and get any of the following errors, "Host key not found in `[directory]`", "Permission denied (publickey)", or "Authentication failed, permission denied", verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key (.pem) file for your instance.
@@ -213,6 +212,11 @@ You can send notifications or take automated action with Lambda when a resource 
   - Observe SSH traffic
   - Observe HTTP traffic
   - Create an HTTP redirect to HTTPS and observe
+- Create multiple accounts under AWS Organization
+  - Create a top-level CloudTrail, send to S3
+  - Query that S3 with Athena
+  - Limit permissions for the S3 to one auditor
+  - Encrypt the log files in S3--try SSE-S3, then SSE-KMS
 
 ## Next Up
 - [x] ~Restructure notes under services~
@@ -225,14 +229,14 @@ You can send notifications or take automated action with Lambda when a resource 
   - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - [ ] Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram
   - [x] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
-  - [ ] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
-  - [ ] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
-  - [ ] [CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
-  - [ ] [CloudTrail Integrity](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)
-  - [ ] [CloudTrail for Orgs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html)
-  - [ ] [Athena x CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html)
-  - [ ] [Permissions for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html)
-  - [ ] [Encryption CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
+  - [x] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
+  - [x] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
+  - [x] [CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
+  - [x] [CloudTrail Integrity](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)
+  - [x] [CloudTrail for Orgs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html)
+  - [x] [Athena x CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html)
+  - [x] [Permissions for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html)
+  - [x] [Encryption CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
   - [ ] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
   - [ ] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
   - [ ] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
