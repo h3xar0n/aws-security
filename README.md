@@ -250,3 +250,18 @@
 
 ## Artifact
 - [Artifact FAQ](https://aws.amazon.com/artifact/faq/)
+
+## Cognito
+- [https://aws.amazon.com/cognito/faqs/](https://aws.amazon.com/cognito/faqs/)
+
+## CloudHSM
+- [https://aws.amazon.com/cloudhsm/faqs/](https://aws.amazon.com/cloudhsm/faqs/)
+
+## Organizations
+- [https://aws.amazon.com/organizations/faqs/](https://aws.amazon.com/organizations/faqs/)
+
+## ACM
+- [https://aws.amazon.com/certificate-manager/faqs/](https://aws.amazon.com/certificate-manager/faqs/)
+
+## EC2 Autoscaling
+- [https://aws.amazon.com/ec2/autoscaling/faqs/](https://aws.amazon.com/ec2/autoscaling/faqs/)
