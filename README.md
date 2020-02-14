@@ -194,6 +194,7 @@
   - Search for IPS on AWS Marketplace and you will find a range of suitable products!
 
 ## AWS Lambda
+- [Lambda FAQ](https://aws.amazon.com/lambda/faqs/)
 - For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
 - For Lambda to make API calls to DynamoDB, the function execution role needs many permissions to interact with DynamoDB.
 ```json
