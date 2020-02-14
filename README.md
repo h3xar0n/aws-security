@@ -108,6 +108,7 @@
 - GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
 
 ## AWS KMS
+- [KMS FAQ](https://aws.amazon.com/kms/faqs/)
 ### CMK
 - Imported key material
   - Automatic key rotation is not available for CMKs that have imported key material, you will need to do this manually.
