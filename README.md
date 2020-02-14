@@ -18,9 +18,7 @@
 - [Athena](#athena)
 - [AWS Shield](#aws-shield)
 - [AWS CloudFront](#aws-cloudfront)
-- [Test Ideas](#test-ideas)
-- [Next Up](#next-up)
-- [Attempt Log](#attempt-log)
+- [Route 53](#route-53)
 
 ## AWS Trusted Advisor
 - Checks Security Groups for rules that allow unrestricted access (0.0.0.0/0) to specific ports such as SSH. 
@@ -244,3 +242,6 @@
 
 ## AWS CloudFront
 - [CloudFront FAQ](https://aws.amazon.com/cloudfront/faqs/)
+
+## Route 53
+- [R53](https://aws.amazon.com/route53/faqs/)
