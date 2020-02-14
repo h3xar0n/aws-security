@@ -31,8 +31,7 @@
   - RDS Public Snapshots
 
 ## AWS Config
-- Config creates a timeline of changes made to tracked resources (so you can see how a resource like an S3 bucket has been modified over time)
-- It allows you to create rules to detect whether your environment is in compliance with certain policies (e.g. all your EBS volumes are encrypted). 
+- [AWS Config FAQ](https://aws.amazon.com/config/faq/)
 - You can send notifications or take automated action with Lambda when a resource violates a rule.
 ![How Config Works](how-AWSconfig-works.png)
 
