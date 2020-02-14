@@ -95,6 +95,7 @@
 - You can configure Amazon Inspector as a target for CloudWatch Events. 
 
 ## AWS GuardDuty
+- [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
 - It can detect instances exhibiting signs of compromise, such as: 
   - Attempting to communicate with a command and control server.
