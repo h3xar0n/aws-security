@@ -17,6 +17,7 @@
 - [AWS Lambda](#aws-lambda)
 - [Athena](#athena)
 - [AWS Shield](#aws-shield)
+- [AWS CloudFront](#aws-cloudfront)
 - [Test Ideas](#test-ideas)
 - [Next Up](#next-up)
 - [Attempt Log](#attempt-log)
@@ -241,55 +242,5 @@
 ## AWS Shield
 - [AWS Shield FAQ](https://aws.amazon.com/shield/faqs/)
 
-## Next Up
-- [x] ~Restructure notes under services~
-- [x] ~Create diagram for policy evaluation~
-- [x] ~Distinguish Inspector, GuardDuty, Config, and Trusted Advisor~
-  - [x] [Backdoor Finding](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
-  - [x] [Trusted Advisor](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/)
-  - [x] [How Config Works](https://docs.aws.amazon.com/config/latest/developerguide/how-does-config-work.html)
-  - [x] [Amazon Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
-  - [x] [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
-- [x] ~Distinguish CloudTrail, CloudWatch, GuardDuty, and VPC Flow Logs with table or diagram~
-  - [x] [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html)
-  - [x] [CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
-  - [x] [CloudTrail 2](https://aws.amazon.com/cloudtrail/)
-  - [x] [CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
-  - [x] [CloudTrail Integrity](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)
-  - [x] [CloudTrail for Orgs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html)
-  - [x] [Athena x CloudTrail](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html)
-  - [x] [Permissions for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/control-user-permissions-for-cloudtrail.html)
-  - [x] [Encryption CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
-  - [x] [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
-  - [x] [CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html)
-  - [x] [CloudWatch Agent x IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
-- [x] ~Create diagrams or mnemonics or 1-3 bullet points for special cases:~
-  - [x] [AWS Direct Connect Plus VPN](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-direct-connect-plus-vpn-network-to-amazon.html)
-  - [x] [SSM Parameter Store](https://docs.aws.amazon.com/kms/latest/developerguide/services-parameter-store.html)
-  - [x] [Lambda Access to DynamoDB](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
-  - [x] [DDoS Whitepaper](https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
-  - [x] [Troubleshooting EC2 Connection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
-  - [x] [Secrets Manager And Resource Based Policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html)
-  - [x] [Rotating Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)
-  - [x] [KMS Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
-  - [x] [EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
-  - [x] [SSE-S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)
-  - [x] [SSE](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
-  - [x] [Memcached vs Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html)
-  - [x] [ADFS](https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/)
-  - [x] [Lambda Invocation Modes](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html)
-  - [x] [Custom Origins](https://aws.amazon.com/premiumsupport/knowledge-center/custom-origin-cloudfront-fails/)
-  - [x] [HTTPS Requirements](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-aws-region)
-  - [x] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
-- [x] Review and remove unneeded notes
-- [x] Attempt 3 (target: >80%)
-- [x] Iterative control exercise
-- [ ] Attempt 4 (target: >90%)
-- [ ] Review and remove unneeded notes
-- [ ] For each wrong or flagged questions:
-   - [ ] Read and take 1-3 bullets
-   - [ ] For wrong questions, also note answers if different from bullets
-- [ ] Review video on how to prepare for official practice
-- [ ] Official practice
-- [ ] Review and remove unneeded notes
-- [ ] For each question, research correct answer
+## AWS CloudFront
+- [CloudFront FAQ](https://aws.amazon.com/cloudfront/faqs/)
