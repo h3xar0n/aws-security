@@ -60,6 +60,7 @@
 ![AWS Direct Connect and VPN](aws-direct-connect-vpn.png)
 
 ## AWS CloudTrail
+- [AWS CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
 - CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
 - It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
 - CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
