@@ -19,6 +19,7 @@
 - [AWS Shield](#aws-shield)
 - [AWS CloudFront](#aws-cloudfront)
 - [Route 53](#route-53)
+- [Artifact](#artifact)
 
 ## AWS Trusted Advisor
 - Checks Security Groups for rules that allow unrestricted access (0.0.0.0/0) to specific ports such as SSH. 
@@ -246,3 +247,6 @@
 
 ## Route 53
 - [R53](https://aws.amazon.com/route53/faqs/)
+
+## Artifact
+- [Artifact FAQ](https://aws.amazon.com/artifact/faq/)
