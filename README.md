@@ -42,6 +42,7 @@
 - Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
 
 ## AWS VPC
+- [VPC FAQ](https://aws.amazon.com/vpc/faqs/)
 ### Flow Logs
 - VPC Flow Logs enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
 - Flow log data can be published to Amazon CloudWatch Logs and Amazon S3.
