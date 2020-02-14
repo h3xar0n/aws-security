@@ -36,6 +36,7 @@
 ![How Config Works](how-AWSconfig-works.png)
 
 ## Amazon Inspector
+- [Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
 - The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
 - Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
 
