@@ -15,6 +15,7 @@
 - [Attempt Log](#attempt-log)
 - [AWS Marketplace](#aws-marketplace)
 - [AWS Lambda](#aws-lambda)
+- [Athena](#athena)
 - [Test Ideas](#test-ideas)
 - [Next Up](#next-up)
 - [Attempt Log](#attempt-log)
@@ -231,6 +232,9 @@
 }
 ```
 ![Lambda architecture](lambda-role.png)
+
+## Athena
+- [Athena FAQ](https://aws.amazon.com/athena/faqs/)
 
 ## Test Ideas
 - Try out Trusted Advisor vs AWS Config vs AWS Inspector vs CloudWatch Agent for detecting: 
