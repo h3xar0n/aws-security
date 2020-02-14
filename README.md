@@ -1,25 +1,99 @@
 # AWS Security Funtime
 
-- [AWS Trusted Advisor](#aws-trusted-advisor)
-- [AWS Config](#aws-config)
-- [Amazon Inspector](#amazon-inspector)
-- [AWS VPC](#aws-vpc)
-- [AWS CloudTrail](#aws-cloudtrail)
-- [AWS CloudWatch](#aws-cloudwatch)
-- [AWS GuardDuty](#aws-guardduty)
-- [AWS KMS](#aws-kms)
-- [AWS Systems Manager](#aws-systems-manager)
-- [AWS ElastiCache](#aws-elasticache)
-- [AWS IAM](#aws-iam)
-- [AWS EC2](#aws-ec2)
-- [Attempt Log](#attempt-log)
-- [AWS Marketplace](#aws-marketplace)
-- [AWS Lambda](#aws-lambda)
-- [Athena](#athena)
-- [AWS Shield](#aws-shield)
-- [AWS CloudFront](#aws-cloudfront)
-- [Route 53](#route-53)
-- [Artifact](#artifact)
+## AWS CloudTrail
+- [AWS CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/) x 3
+- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
+- It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
+- CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
+![CloudTrail flow](Product-Page-Diagram-AWSX-CloudTrail_How-it-Works.d2f51f6e3ec3ea3b33d0c48d472f0e0b59b46e59.png)
+### Multiple accounts
+- Within an AWS Organization, you can create one CloudTrail to cover all accounts.
+![CloudTrail for Orgs](organization-trail.png)
+### Management and data events
+- Management and Data events are handled by separate CloudTrails. 
+  - **Data Events**: operations on or within a resource
+		- Often high-volume
+		- Disabled by default
+		- You must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
+  - **Management Events**: Configuration or security changes
+  - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
+### Regions
+- When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
+### Integrity
+- To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
+
+
+## AWS KMS
+- [KMS FAQ](https://aws.amazon.com/kms/faqs/) x 2
+### CMK
+- Imported key material
+  - Automatic key rotation is not available for CMKs that have imported key material, you will need to do this manually.
+- Customer managed keys
+  - A customer managed CMK supports automatic key rotation once per year. 
+  - Creating and managing your own CMK gives you more flexibility, including the ability to create, rotate, disable, and define access controls, and to audit the encryption keys used to protect your data. 
+- AWS managed keys 
+  - AWS managed keys automatically rotate once every three years.
+
+## AWS Config
+- [AWS Config FAQ](https://aws.amazon.com/config/faq/) x 2
+- You can send notifications or take automated action with Lambda when a resource violates a rule.
+![How Config Works](how-AWSconfig-works.png)
+
+## Amazon Inspector
+- [Inspector FAQ](https://aws.amazon.com/inspector/faqs/) x 2
+- The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
+- Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
+
+## AWS CloudWatch
+- [CloudWatch FAQ](https://aws.amazon.com/cloudwatch/faqs/) x 2
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- CloudWatch alone lacks the business rules that are provided with GuardDuty to create an event whenever malicious or unauthorized behavior is observed.
+	- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
+- If an anomaly is detect, CloudWatch Event can trigger a Lambda.
+### CloudWatch Logs
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
+- You can then retrieve the associated log data from CloudWatch Logs.
+### CloudWatch Events
+- You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
+- You can configure Amazon Inspector as a target for CloudWatch Events. 
+
+## AWS Lambda
+- [Lambda FAQ](https://aws.amazon.com/lambda/faqs/) x 2
+- For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
+- For Lambda to make API calls to DynamoDB, the function execution role needs many permissions to interact with DynamoDB.
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Effect": "Allow",
+			"Action": [
+				"dynamodb:BatchGetItem",
+				"dynamodb:GetItem",
+				"dynamodb:Query",
+				"dynamodb:Scan",
+				"dynamodb:BatchWriteItem",
+				"dynamodb:PutItem",
+				"dynamodb:UpdateItem"
+			],
+			"Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/SampleTable"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:eu-west-1:123456789012:*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": "logs:CreateLogGroup",
+			"Resource": "*"
+		}
+	]
+}
+```
+![Lambda architecture](lambda-role.png)
 
 ## AWS Trusted Advisor
 - Checks Security Groups for rules that allow unrestricted access (0.0.0.0/0) to specific ports such as SSH. 
@@ -31,16 +105,6 @@
   - MFA on Root Account
   - EBS Public Snapshots
   - RDS Public Snapshots
-
-## AWS Config
-- [AWS Config FAQ](https://aws.amazon.com/config/faq/)
-- You can send notifications or take automated action with Lambda when a resource violates a rule.
-![How Config Works](how-AWSconfig-works.png)
-
-## Amazon Inspector
-- [Inspector FAQ](https://aws.amazon.com/inspector/faqs/)
-- The runtime behavior package checks for insecure protocols like Telnet, FTP, HTTP, IMAP, rlogin etc. 
-- Neither the AWS Config restricted-common-ports check or Trusted Advisor will give you this information.
 
 ## AWS VPC
 - [VPC FAQ](https://aws.amazon.com/vpc/faqs/)
@@ -63,41 +127,6 @@
 - This combination provides an IPsec-encrypted private connection that also reduces network costs, increases bandwidth throughput, and provides a more consistent network experience than internet-based VPN connections.
 ![AWS Direct Connect and VPN](aws-direct-connect-vpn.png)
 
-## AWS CloudTrail
-- [AWS CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/)
-- CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
-- It is recommended to use a dedicated S3 bucket for CloudTrail logs. 
-- CloudTrail can also send logs to CloudWatch Logs, which can then trigger CloudWatch Events
-![CloudTrail flow](Product-Page-Diagram-AWSX-CloudTrail_How-it-Works.d2f51f6e3ec3ea3b33d0c48d472f0e0b59b46e59.png)
-### Multiple accounts
-- Within an AWS Organization, you can create one CloudTrail to cover all accounts.
-![CloudTrail for Orgs](organization-trail.png)
-### Management and data events
-- Management and Data events are handled by separate CloudTrails. 
-  - **Data Events**: operations on or within a resource
-		- Often high-volume
-		- Disabled by default
-		- You must explicitly add the supported resources or resource types for which you want to collect activity to a trail.
-  - **Management Events**: Configuration or security changes
-  - You should log the events to separate buckets, then configure access to the CloudTrail and read only access to the S3 bucket using an IAM policy attached to the user or group. 
-### Regions
-- When you apply a trail to all regions, CloudTrail uses the trail that you create in a particular region to create trails with identical configurations in all other regions in your account. 
-### Integrity
-- To determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it, you can use CloudTrail log file integrity validation.
-
-## AWS CloudWatch
-- [CloudWatch FAQ](https://aws.amazon.com/cloudwatch/faqs/)
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
-- CloudWatch alone lacks the business rules that are provided with GuardDuty to create an event whenever malicious or unauthorized behavior is observed.
-	- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
-- If an anomaly is detect, CloudWatch Event can trigger a Lambda.
-### CloudWatch Logs
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. 
-- You can then retrieve the associated log data from CloudWatch Logs.
-### CloudWatch Events
-- You can use CloudWatch Events to schedule automated actions that self-trigger at certain times using cron or rate expressions.
-- You can configure Amazon Inspector as a target for CloudWatch Events. 
-
 ## AWS GuardDuty
 - [GuardDuty FAQ](https://aws.amazon.com/guardduty/faqs/)
 - It is a managed service that can watch CloudTrail, VPC Flow Logs and DNS Logs, watching for malicious activity. 
@@ -107,18 +136,7 @@
   - Sending requests that look like it is part of a DoS attack
   - [GuardDuty Backdoor](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_backdoor.html)
 - It has a build-in list of suspect IP addresses and you can also upload your own lists of IPs.
-- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat.
-
-## AWS KMS
-- [KMS FAQ](https://aws.amazon.com/kms/faqs/)
-### CMK
-- Imported key material
-  - Automatic key rotation is not available for CMKs that have imported key material, you will need to do this manually.
-- Customer managed keys
-  - A customer managed CMK supports automatic key rotation once per year. 
-  - Creating and managing your own CMK gives you more flexibility, including the ability to create, rotate, disable, and define access controls, and to audit the encryption keys used to protect your data. 
-- AWS managed keys 
-  - AWS managed keys automatically rotate once every three years.
+- GuardDuty can trigger CloudWatch Events which can then be used for a variety of activities like notifications or automatically responding to a threat
 
 ## AWS Systems Manager 
 ### Parameter Store
@@ -197,44 +215,6 @@
 - AWS acknowledge that they do not provide IPS/IDS. 
   - Instead they suggest that third-party software can be used to provide additional functionality such as deep packet inspection, IPS/IDS, or network threat protection. 
   - Search for IPS on AWS Marketplace and you will find a range of suitable products!
-
-## AWS Lambda
-- [Lambda FAQ](https://aws.amazon.com/lambda/faqs/)
-- For Lambda to send logs to CloudWatch, the function execution role needs to permission to write to CloudWatch.
-- For Lambda to make API calls to DynamoDB, the function execution role needs many permissions to interact with DynamoDB.
-```json
-{
-	"Version": "2012-10-17",
-	"Statement": [{
-			"Effect": "Allow",
-			"Action": [
-				"dynamodb:BatchGetItem",
-				"dynamodb:GetItem",
-				"dynamodb:Query",
-				"dynamodb:Scan",
-				"dynamodb:BatchWriteItem",
-				"dynamodb:PutItem",
-				"dynamodb:UpdateItem"
-			],
-			"Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/SampleTable"
-		},
-		{
-			"Effect": "Allow",
-			"Action": [
-				"logs:CreateLogStream",
-				"logs:PutLogEvents"
-			],
-			"Resource": "arn:aws:logs:eu-west-1:123456789012:*"
-		},
-		{
-			"Effect": "Allow",
-			"Action": "logs:CreateLogGroup",
-			"Resource": "*"
-		}
-	]
-}
-```
-![Lambda architecture](lambda-role.png)
 
 ## Athena
 - [Athena FAQ](https://aws.amazon.com/athena/faqs/)
