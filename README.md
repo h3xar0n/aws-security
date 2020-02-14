@@ -16,6 +16,7 @@
 - [AWS Marketplace](#aws-marketplace)
 - [AWS Lambda](#aws-lambda)
 - [Athena](#athena)
+- [AWS Shield](#aws-shield)
 - [Test Ideas](#test-ideas)
 - [Next Up](#next-up)
 - [Attempt Log](#attempt-log)
@@ -237,51 +238,8 @@
 ## Athena
 - [Athena FAQ](https://aws.amazon.com/athena/faqs/)
 
-## Test Ideas
-- Try out Trusted Advisor vs AWS Config vs AWS Inspector vs CloudWatch Agent for detecting: 
-  - Install a CloudWatch agent on EC2 and use Parameter Store [like so](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/create-iam-roles-for-cloudwatch-agent.html)
-  - An open SSH port:
-    - Does Trusted Advisor catch the exposure?
-    - Does Inspector detect the port?
-    - If a Config rule is set, and a notification created, does Config notice the exposure?
-    - If a Config Lambda is set and configuration changes, does Config close the port?
-  - An open HTTP (not HTTPS) port:
-    - Does Trusted Advisor catch the exposure?
-    - Does Inspector detect the port?
-    - If a Config rule is set, and a notification created, does Config notice the exposure?
-    - If a Config Lambda is set and configuration changes, does Config close the port?
-  - Put behind CloudFront, see if errors occur
-  - Turn on TLS for CloudFront
-  - Check for errors in CloudWatch
-- Set up a DB in RDS with secrets stored in Secrets Manager connected to EC2
-  - Provide the EC2 instance access to read SM
-	- Rotate secrets with AWS SM
-	- Encrypt the EBS volume
-	- Simulate lost private key for EC2
-- Try out VPC Flow Logs going to S3 vs CloudWatch Logs
-  - Observe SSH traffic
-  - Observe HTTP traffic
-  - Create an HTTP redirect to HTTPS and observe
-- Set up GuardDuty to trigger CloudWatch Events and Lambda
-- Set up Lambda to modify DynamoDB and send logs to CloudWatch [like so](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
-- Create multiple accounts under AWS Organization
-  - Create top-level CloudTrails for data and management events, send each to separate S3s
-  - Query S3s with Athena
-  - send data events to CloudWatch Logs
-  - send management events to CloudWatch Events with an alert for IAM changes and changes to encryption
-  - Limit permissions for the S3 to one auditor
-  - Encrypt the log files in S3--try SSE-S3, then SSE-KMS
-	- Create a KMS grant for another account
-	- Use that account to use the CMK
-	- Revoke the grant
-  - Check logs after changes
-
-## Attempt Log
-1. 65%
-2. 77%
-3. 89%
-4.
-(>90% needed to take official practice)
+## AWS Shield
+- [AWS Shield FAQ](https://aws.amazon.com/shield/faqs/)
 
 ## Next Up
 - [x] ~Restructure notes under services~
