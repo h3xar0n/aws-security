@@ -316,7 +316,7 @@
   - [x] [VPC DNS](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)
 - [x] Review and remove unneeded notes
 - [x] Attempt 3 (target: >80%)
-- [ ] Iterative control exercise
+- [x] Iterative control exercise
 - [ ] Attempt 4 (target: >90%)
 - [ ] Review and remove unneeded notes
 - [ ] For each wrong or flagged questions:
