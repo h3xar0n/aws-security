@@ -1,5 +1,23 @@
 # AWS Security Funtime
 
+This is by no means enough to take the exam, but these were helpful points of reference that I used to review. 
+
+The 3 most important tips, outside of reviewing the white papers and re:Invent videos:
+
+1) try out every lab you can on ACloudGuru / LinuxAcademy, especially related to using CloudWatch and to using KMS
+2) have a strong sense of how the following work together:
+	- Lambda with everything
+	- CloudFront, ELB (all 3 types), AWS WAF
+	- CloudTrail, CloudWatch logs, S3, Athena
+	- Macie with S3
+3) have a good sense of the different use cases for the following:
+- GuardDuty
+- Inspector (especially what you can and can’t choose, and how to troubleshoot)
+- Config (especially types of config rules)
+- Trusted Advisor (know its limitations)
+
+I cannot stress the importance of trying these tools out, going through labs, and stubbing your toe. Even if you have experience with some of them, you need exposure to all in order to pass. People who just try to cram for this routinely fail, it was designed to beat them. Besides, learning from labs is much more efficient than cramming, and you get immediate feedback if you make a mistake.
+
 ## AWS CloudTrail
 - [AWS CloudTrail FAQ](https://aws.amazon.com/cloudtrail/faqs/) x 3
 - CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services.
